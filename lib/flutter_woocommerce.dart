@@ -1,10 +1,8 @@
 library flutter_woocommerce;
 
 import 'dart:async';
-import "dart:collection";
 import 'dart:convert';
 import 'dart:io';
-import "dart:math";
 import "dart:core";
 import 'package:flutter_woocommerce/Modals/auth.dart';
 import 'package:flutter_woocommerce/Modals/customer.dart';
@@ -17,9 +15,6 @@ class FlutterWoocommerce {
   String url;
   String consumerKey;
   String consumerSecret;
-
-  String _methodGET = "GET";
-  String _methodPOST = "POST";
 
   FlutterWoocommerce({
     @required String url,
@@ -148,7 +143,7 @@ class FlutterWoocommerce {
 
   ///***Create New Customer***
   ///
-  ///Sign up new customer. 
+  ///Sign up new customer.
   ///
   ///Return *Json* *Object* if **success** and
   ///Return `WooError` if **failed**
@@ -229,7 +224,7 @@ class FlutterWoocommerce {
   ///Return `Customer` if **success** and
   ///Return `WooError` if **failed**
   Future<dynamic> updateCustomer(Customer customer) async {
-    String url = this._genUrl('customers/'+customer.id.toString()); 
+    String url = this._genUrl('customers/' + customer.id.toString());
 
     http.Client client = http.Client();
     http.Request request = http.Request('PUT', Uri.parse(url));
@@ -265,7 +260,6 @@ class FlutterWoocommerce {
         this.consumerKey +
         '&consumer_secret=' +
         this.consumerSecret;
-
 
     var response = await http
         .get(url, headers: {HttpHeaders.contentTypeHeader: "application/json"});

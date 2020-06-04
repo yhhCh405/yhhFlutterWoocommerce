@@ -148,7 +148,7 @@ class FlutterWoocommerce {
 
   ///***Create New Customer***
   ///
-  ///Sign up new customer. 
+  ///Sign up new customer.
   ///
   ///Return *Json* *Object* if **success** and
   ///Return `WooError` if **failed**
@@ -229,7 +229,7 @@ class FlutterWoocommerce {
   ///Return `Customer` if **success** and
   ///Return `WooError` if **failed**
   Future<dynamic> updateCustomer(Customer customer) async {
-    String url = this._genUrl('customers/'+customer.id.toString()); 
+    String url = this._genUrl('customers/' + customer.id.toString());
 
     http.Client client = http.Client();
     http.Request request = http.Request('PUT', Uri.parse(url));
@@ -265,7 +265,6 @@ class FlutterWoocommerce {
         this.consumerKey +
         '&consumer_secret=' +
         this.consumerSecret;
-
 
     var response = await http
         .get(url, headers: {HttpHeaders.contentTypeHeader: "application/json"});

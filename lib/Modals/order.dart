@@ -1,11 +1,9 @@
-
 class Order {
-  int _id;
-  String _number;
-  String _orderKey;
-  String _createVia;
-  String _version;
-  
+  // int _id;
+  // String _number;
+  // String _orderKey;
+  // String _createVia;
+  // String _version;
 
   int parentID;
 
@@ -33,7 +31,6 @@ class Order {
     paymentMethod = this.paymentMethod;
     //ADD MORE
   }
-
 
   Map<String, dynamic> toMap() {
     return {
@@ -88,8 +85,8 @@ class Billing {
       this.postCode,
       this.email,
       this.phone});
-  
-  Billing.fromJSON(dynamic json){
+
+  Billing.fromJSON(dynamic json) {
     this.firstName = json['first_name'];
     this.lastName = json['last_name'];
     this.company = json['company'];
@@ -103,7 +100,7 @@ class Billing {
     this.phone = json['phone'];
   }
 
-  Map<String,dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'first_name': this.firstName,
       'last_name': this.lastName,
@@ -115,7 +112,7 @@ class Billing {
       'postcode': this.postCode,
       'country': this.country,
       'phone': this.phone,
-      'email' : this.email,
+      'email': this.email,
     };
   }
 }
@@ -142,7 +139,7 @@ class Shipping {
     this.postCode,
   });
 
-    Shipping.fromJSON(dynamic json){
+  Shipping.fromJSON(dynamic json) {
     this.firstName = json['first_name'];
     this.lastName = json['last_name'];
     this.company = json['company'];
@@ -154,7 +151,7 @@ class Shipping {
     this.country = json['country'];
   }
 
-  Map<String,dynamic> toJson() {
+  Map<String, dynamic> toJson() {
     return {
       'first_name': this.firstName,
       'last_name': this.lastName,
@@ -169,11 +166,10 @@ class Shipping {
   }
 }
 
-class MetaData{
+class MetaData {
   int id;
   String key;
   String value;
 
-  MetaData({this.id,this.key,this.value});
-
+  MetaData({this.id, this.key, this.value});
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class WooAuthedUser{
+class WooAuthedUser {
   String token;
   String email;
   String nickname;
@@ -8,7 +8,7 @@ class WooAuthedUser{
 
   WooAuthedUser({@required this.email});
 
-  WooAuthedUser.fromJSON(dynamic json){
+  WooAuthedUser.fromJSON(dynamic json) {
     this.token = json['token'];
     this.email = json['user_email'];
     this.nickname = json['user_nicename'];

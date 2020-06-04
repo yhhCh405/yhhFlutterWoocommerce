@@ -44,7 +44,7 @@ class ProductItem {
 
   ///Call the first arg. Image link is `src`.
   List<Img> images = [];
-  
+
   ProductItem({
     this.name,
     this.id,
