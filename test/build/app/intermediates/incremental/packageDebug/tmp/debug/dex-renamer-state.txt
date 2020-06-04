@@ -1,4 +1,0 @@
-#Thu Jun 04 21:56:09 MMT 2020
-base.0=/root/flutter_projects/MY_PROJECTS/pub-pkg/flutter_woocommerce/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
