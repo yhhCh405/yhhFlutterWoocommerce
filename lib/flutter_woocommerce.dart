@@ -165,13 +165,20 @@ class FlutterWoocommerce {
 
   ///*Added by* ***YHH***
   ///
-  ///Login customer. Please make sure that you have installed **jwt-auth** plugin in wordpress to use this method.
+  ///Login customer with **username** and **password**. Please make sure that you have installed **jwt-auth** plugin in wordpress to use this method.
   ///
   ///return `WooAuthedUser` if **passed**
   ///return `WooError` if **failed**
   ///
   Future<dynamic> customerLogin(User user) async {
-    String url = this.url + '/wp-json/jwt-auth/v1/token';
+    if (user.username == null) {
+      return WooError(message: "Username is empty");
+    } else if (user.password == null) {
+      return WooError(message: "Password is empty");
+    }
+    String host = this.url;
+    if (!host.endsWith('/')) host += "/";
+    String url = host + 'wp-json/jwt-auth/v1/token';
 
     var response = await http.post(url,
         body: {"username": user.username, "password": user.password});
@@ -251,8 +258,10 @@ class FlutterWoocommerce {
   ///Return `Customer` if **success** and
   ///Return `WooError` if **failed**
   Future<dynamic> getCustomerByEmail(String email) async {
-    String url = this.url +
-        '/wc-api/v3/customers/email/' +
+    String host = this.url;
+    if (!host.endsWith('/')) host += "/";
+    String url = host +
+        'wc-api/v3/customers/email/' +
         email +
         '?consumer_key=' +
         this.consumerKey +

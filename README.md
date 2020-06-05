@@ -12,8 +12,9 @@ FlutterWoocommerce flutterWoocommerce = FlutterWoocommerce(
       consumerSecret: <your_consumerSecret>,
   );
 ```
+## Basic CRUD Requests
 
-## Create
+### Create
 Create data using POST request. Use 
 **postReq(** *String* **endPoint**, *Map* **data** )
 method. It will return `Json Object` if no error. Then assign it with corresponding Object. And will return **`WooError`** if there is error.   
@@ -40,7 +41,7 @@ Example of creating a customer using POST Request
 ```
 
 
-## Read
+### Read
 Read data using GET request. Use **getReq(** *String* **endpoint** **)** method. It will return `Json Object` if no error. Assign it with corresponding Object. And will return **`WooError`** if there is error.   
 >*But sometimes you may need to use POST to read data according to condition.*
 
@@ -64,7 +65,7 @@ Example of reading list of customers using GET Request
 
 
 
-## Update
+### Update
 Update data using PUT request. Use **putReq(** *String* **endPoint**, *Map* **data** ) method. It will return `Json Object` if no error. Assign it with corresponding Object. And will return **`WooError`** if there is error.   
 
 Example of updating a product using PUT Request
@@ -83,7 +84,7 @@ Example of updating a product using PUT Request
   }
 ```
 
-## Delete
+### Delete
 Delete data using DELETE request. Use **deleteReq(** *String* **endPoint**) method. It will return `Json Object` if no error. Assign it with corresponding Object. And will return **`WooError`** if there is error.   
 
 Example of deleting an order using DELETE Request
@@ -100,3 +101,40 @@ Example of deleting an order using DELETE Request
   }
 ```
 
+## Authentication
+Intented for customer and admin login. You must install [JWT_auth](https://wordpress.org/plugins/jwt-auth/) plugin first in your wordpress site.
+
+Use **customerLogin(** *User* **user** **)** method to authenticate. It will return **`WooAuthedUser`** object if exist.
+
+For Example:
+```
+  loginCutomer() async{
+    var result = await flutterWoocommerce.customerLogin(User(username: 'username', password: "12345"));
+    if(result is! WooError){
+      WooAuthedUser wooAuthedUser = result;
+      print(wooAuthedUser.displayName);
+    }else{
+      WooError err = result;
+      print(err.message);
+    }
+  }
+```
+
+## Bonus Methods
+There are some additional methods to save your time.
+| Method                                              | Return               |
+| :---------------------------------------:           |:-------------------: |
+| `customerSignUp(`*`User`*` user)`                   | **`Customer`**       |
+| `getCustomers()`                                    | **`List<Customer>`** |
+| `updateCustomer(`*`Customer`*` customer)`           | **`Customer`**       |
+| `getCustomerByEmail(`*`String`*` email)`            | **`Customer`**       |
+
+## Objects
+Ready to use Objects. Unchecked items are not completed yet.
+- [x] Customer
+- [] Order
+- [x] Billing
+- [x] Shipping
+- [] LineItem 
+- [] ProductItem
+- [x] Img

@@ -1,9 +1,11 @@
 import 'package:example/config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_woocommerce/Modals/auth.dart';
 import 'package:flutter_woocommerce/Modals/customer.dart';
 import 'package:flutter_woocommerce/Modals/error.dart';
 import 'package:flutter_woocommerce/Modals/order.dart';
 import 'package:flutter_woocommerce/Modals/productitem.dart';
+import 'package:flutter_woocommerce/Modals/user.dart';
 import 'package:flutter_woocommerce/flutter_woocommerce.dart';
 
 void main() {
@@ -48,6 +50,21 @@ class _MyHomeState extends State<MyHome> {
     }
   }
 
+  fetchAllOrders() async {
+    List<Order> orderList = [];
+    var result = await flutterWoocommerce.getReq('orders');
+    if (result is !WooError) {
+      List<dynamic> resultList = result;
+      resultList.forEach((order) {
+        orderList.add(Order.fromJSON(order));
+      });
+    }else{
+      WooError err = result;
+      print(err.message);
+    }
+    print(orderList.length);
+  }
+
   updateProduct() async {
     ProductItem productItem = ProductItem(regularPrice: "USD 500");
     var result =
@@ -72,6 +89,17 @@ class _MyHomeState extends State<MyHome> {
     }
   }
 
+  loginCutomer() async{
+    var result = await flutterWoocommerce.customerLogin(User(username: 'username', password: "12345"));
+    if(result is! WooError){
+      WooAuthedUser wooAuthedUser = result;
+      print(wooAuthedUser.displayName);
+    }else{
+      WooError err = result;
+      print(err.message);
+    }
+  }
+  
   @override
   void initState() {
     super.initState();
@@ -85,7 +113,7 @@ class _MyHomeState extends State<MyHome> {
         child: Center(
           child: RaisedButton(
             onPressed: () {
-              deleteOrder();
+              
             },
           ),
         ),

@@ -1,6 +1,3 @@
-/// *Class by* ***Ye Htet Hein***
-///
-/// Since there is lot of data from api response, not all data included. Please check `json` if your required data is missing.
 class ProductItem {
   static String statusPUBLISHED = 'publish';
 
