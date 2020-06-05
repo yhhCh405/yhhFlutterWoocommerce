@@ -123,18 +123,18 @@ For Example:
 ## Bonus Methods
 There are some additional methods to save your time.
 | Method                                              | Return               |
-| :---------------------------------------:           |:-------------------: |
+| :-------------------------------------------------: |:-------------------: |
 | `customerSignUp(`*`User`*` user)`                   | **`Customer`**       |
 | `getCustomers()`                                    | **`List<Customer>`** |
 | `updateCustomer(`*`Customer`*` customer)`           | **`Customer`**       |
 | `getCustomerByEmail(`*`String`*` email)`            | **`Customer`**       |
 
 ## Objects
-Ready to use Objects. Unchecked items are not completed yet.
+Ready to use Objects. Unchecked items are not completed yet.  
 - [x] Customer
-- [] Order
+- [ ] Order
 - [x] Billing
 - [x] Shipping
-- [] LineItem 
-- [] ProductItem
+- [ ] LineItem 
+- [ ] ProductItem
 - [x] Img
