@@ -33,6 +33,7 @@ class Customer {
       {this.firstName,
       this.lastName,
       this.userName,
+      this.email,
       this.billing,
       this.shipping});
 
@@ -72,8 +73,8 @@ class Customer {
       'username': this.userName,
       'email': this.email,
       'password': this._password,
-      'billing': this.billing.toJson(),
-      'shipping': this.shipping.toJson()
+      'billing': this.billing?.toJson(),
+      'shipping': this.shipping?.toJson()
     };
   }
 }

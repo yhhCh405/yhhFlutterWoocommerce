@@ -1,5 +1,5 @@
 class Order {
-  // int _id;
+  int _id;
   // String _number;
   // String _orderKey;
   // String _createVia;
@@ -17,6 +17,9 @@ class Order {
   List<LineItem> lineItems;
   //ADD MORE
 
+  //getters
+  int get id => this._id;
+
   Order(
       {this.paymentMethod,
       this.shippingAddr,
@@ -30,6 +33,17 @@ class Order {
 
     paymentMethod = this.paymentMethod;
     //ADD MORE
+  }
+
+  Order.fromJSON(dynamic json){
+    this._id = json['id'];
+    this.customerId = json['customer_id'];
+    this.customerNote = json['customer_note'];
+    this.billingAddr = Billing.fromJSON(json['billing']);
+    this.shippingAddr = Shipping.fromJSON(json['shipping']);
+    this.paymentMethod = json['payment_method'];
+    List<dynamic> lit = json['line_items'];
+    lineItems = lit.map((lineitem)=> LineItem.fromJSON(lineitem)).toList();
   }
 
   Map<String, dynamic> toMap() {
@@ -50,6 +64,12 @@ class LineItem {
   int variationID;
 
   LineItem({this.productID, this.quantity, this.variationID});
+
+  LineItem.fromJSON(dynamic json){
+    this.productID = json['product_id'];
+    this.quantity = json['quantity'];
+    this.variationID = json['variation_id'];
+  }
 
   Map<String, dynamic> toJson() {
     return {

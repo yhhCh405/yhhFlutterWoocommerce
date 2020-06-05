@@ -52,16 +52,12 @@ class FlutterWoocommerce {
     String url = this._genUrl(endPoint);
     try {
       final http.Response response = await http.get(url);
-      if (response.statusCode == 200) {
-        var dataResponse = await json.decode(response.body);
+      var responseBody = await json.decode(response.body);
 
-        if (dataResponse['message'] == null) {
-          return dataResponse;
-        } else {
-          return WooError.fromJSON(dataResponse);
-        }
+      if (responseBody is List<dynamic> || responseBody['message'] == null) {
+        return responseBody;
       } else {
-        return WooError.fromJSON(json);
+        return WooError.fromJSON(responseBody);
       }
     } on SocketException {
       throw Exception('No Internet connection.');
@@ -145,7 +141,7 @@ class FlutterWoocommerce {
   ///
   ///Sign up new customer.
   ///
-  ///Return *Json* *Object* if **success** and
+  ///Return `Customer` if **success** and
   ///Return `WooError` if **failed**
   Future<dynamic> customerSignUp(User user) async {
     String url = this._genUrl('customers');
@@ -159,7 +155,9 @@ class FlutterWoocommerce {
         await client.send(request).then((res) => res.stream.bytesToString());
     var dataResponse = await json.decode(response);
     if (dataResponse['message'] == null) {
-      return dataResponse;
+      Customer result = Customer.fromJSON(dataResponse);
+
+      return result;
     } else {
       return WooError.fromJSON(dataResponse);
     }

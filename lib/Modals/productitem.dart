@@ -6,7 +6,7 @@ class ProductItem {
 
   static String visibilityVISIBLE = 'visible';
 
-  int id;
+  int _id;
   String name;
   String slug;
   String permaLink;
@@ -45,9 +45,11 @@ class ProductItem {
   ///Call the first arg. Image link is `src`.
   List<Img> images = [];
 
+  //getters
+  int get id=> this._id;
+
   ProductItem({
     this.name,
-    this.id,
     this.price,
     this.description,
     this.inStock,
@@ -86,7 +88,7 @@ class ProductItem {
 
   /// Json constructor
   ProductItem.fromJSON(dynamic json) {
-    this.id = json['id'];
+    this._id = json['id'];
     this.name = json['name'];
     this.slug = json['slug'];
     this.permaLink = json['permalink'];
@@ -129,7 +131,6 @@ class ProductItem {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
       'name': this.name,
       'description': this.description,
       'price': this.price
