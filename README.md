@@ -133,10 +133,10 @@ There are some additional methods to save your time.
 ## Objects
 Ready to use Objects. Unchecked items are not completed yet.  
 
-[x] Customer
-[ ] Order
-[x] Billing
-[x] Shipping
-[ ] LineItem 
-[ ] ProductItem
-[x] Img
+- [x] Customer
+- [ ] Order
+- [x] Billing
+- [x] Shipping
+- [ ] LineItem 
+- [ ] ProductItem
+- [x] Img
