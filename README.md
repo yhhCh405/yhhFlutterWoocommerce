@@ -121,7 +121,8 @@ For Example:
 ```
 
 ## Bonus Methods
-There are some additional methods to save your time.
+There are some additional methods to save your time.   
+
 | Method                                              | Return               |
 | :-------------------------------------------------: |:-------------------: |
 | `customerSignUp(`*`User`*` user)`                   | **`Customer`**       |
@@ -131,10 +132,11 @@ There are some additional methods to save your time.
 
 ## Objects
 Ready to use Objects. Unchecked items are not completed yet.  
-- [x] Customer
-- [ ] Order
-- [x] Billing
-- [x] Shipping
-- [ ] LineItem 
-- [ ] ProductItem
-- [x] Img
+
+[x] Customer
+[ ] Order
+[x] Billing
+[x] Shipping
+[ ] LineItem 
+[ ] ProductItem
+[x] Img

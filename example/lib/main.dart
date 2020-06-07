@@ -6,6 +6,7 @@ import 'package:flutter_woocommerce/Modals/error.dart';
 import 'package:flutter_woocommerce/Modals/order.dart';
 import 'package:flutter_woocommerce/Modals/productitem.dart';
 import 'package:flutter_woocommerce/Modals/user.dart';
+import 'package:flutter_woocommerce/Modals/coupon.dart';
 import 'package:flutter_woocommerce/flutter_woocommerce.dart';
 
 void main() {
@@ -103,6 +104,9 @@ class _MyHomeState extends State<MyHome> {
   @override
   void initState() {
     super.initState();
+    Coupon coupon = Coupon( );
+
+
   }
 
   @override
