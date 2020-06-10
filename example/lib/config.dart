@@ -3,5 +3,3 @@ class ServerCrends {
   static String consumerKey = '<consumer key>';
   static String consumerSecret = '<consumer secret>';
 }
-
-

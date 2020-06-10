@@ -3,9 +3,14 @@
 Let's integrate woo api with flutter easily.
 
 ## Getting Started
+Import
+```dart
+import 'package:flutter_woocommerce/flutter_woocommerce.dart';
+import 'package:flutter_woocommerce/flutter_woocommerce_utils.dart';
+```
 
 Create instance 
-```  
+```dart
 FlutterWoocommerce flutterWoocommerce = FlutterWoocommerce(
       url: <url>,
       consumerKey: <your_consumerKey>,
@@ -20,7 +25,7 @@ Create data using POST request. Use
 method. It will return `Json Object` if no error. Then assign it with corresponding Object. And will return **`WooError`** if there is error.   
 
 Example of creating a customer using POST Request
-  ```
+  ```dart
   createCustomer() async {
     Customer newCustomer = Customer(
         firstName: "Ma Tin",
@@ -46,7 +51,7 @@ Read data using GET request. Use **getReq(** *String* **endpoint** **)** method.
 >*But sometimes you may need to use POST to read data according to condition.*
 
 Example of reading list of customers using GET Request
-  ```
+  ```dart
   fetchAllOrders() async {
     List<Order> orderList = [];
     var result = await flutterWoocommerce.getReq('orders');
@@ -69,7 +74,7 @@ Example of reading list of customers using GET Request
 Update data using PUT request. Use **putReq(** *String* **endPoint**, *Map* **data** ) method. It will return `Json Object` if no error. Assign it with corresponding Object. And will return **`WooError`** if there is error.   
 
 Example of updating a product using PUT Request
-  ```
+  ```dart
   updateProduct() async{
     ProductItem productItem = ProductItem(regularPrice: "USD 500");
     var result =
@@ -88,7 +93,7 @@ Example of updating a product using PUT Request
 Delete data using DELETE request. Use **deleteReq(** *String* **endPoint**) method. It will return `Json Object` if no error. Assign it with corresponding Object. And will return **`WooError`** if there is error.   
 
 Example of deleting an order using DELETE Request
-  ```
+```dart
   deleteOrder() async {
     var result = await flutterWoocommerce.deleteReq('orders/27');
     if (result is! WooError) {
@@ -107,7 +112,7 @@ Intented for customer and admin login. You must install [JWT_auth](https://wordp
 Use **customerLogin(** *User* **user** **)** method to authenticate. It will return **`WooAuthedUser`** object if exist.
 
 For Example:
-```
+```dart
   loginCutomer() async{
     var result = await flutterWoocommerce.customerLogin(User(username: 'username', password: "12345"));
     if(result is! WooError){
@@ -122,21 +127,45 @@ For Example:
 
 ## Bonus Methods
 There are some additional methods to save your time.   
-
-| Method                                              | Return               |
-| :-------------------------------------------------: |:-------------------: |
-| `customerSignUp(`*`User`*` user)`                   | **`Customer`**       |
-| `getCustomers()`                                    | **`List<Customer>`** |
-| `updateCustomer(`*`Customer`*` customer)`           | **`Customer`**       |
-| `getCustomerByEmail(`*`String`*` email)`            | **`Customer`**       |
+```dart
+customerSignUp(User user)           => Customer
+getCustomers()                      => List<Customer>
+updateCustomer(Customer customer)   => Customer
+getCustomerByEmail(String email)    => Customer
+```
 
 ## Objects
-Ready to use Objects. Unchecked items are not completed yet.  
+Ready to use util objects. Unchecked items are not completed yet.  
 
-[x] Customer
-[ ] Order
-[x] Billing
-[x] Shipping
-[ ] LineItem 
-[ ] ProductItem
-[x] Img
+- [x] Coupon
+- [x] Customer
+- [x] Billing
+- [x] Shipping
+- [x] Order
+- [x] LineItem
+- [x] Taxes
+- [x] TaxLine
+- [x] Refund(Order)
+- [x] ShippingLine
+- [x] FeeLine
+- [x] CouponLine
+- [ ] ProductItem
+- [ ] ProductVar
+- [ ] ProductAttr
+- [ ] ProductAttrTerms
+- [ ] ProductCateg
+- [ ] ProductShipClasses
+- [ ] ProductTags
+- [ ] ProductRev
+- [ ] TaxRates
+- [ ] TaxClasses
+- [ ] Settings
+- [ ] SettingsOpt
+- [ ] PaymentGatways
+- [ ] ShippingZones
+- [ ] ShippingZonesMtds
+- [ ] ShippingMtds
+- [ ] SystemStatus
+- [ ] SystemStatTools 
+- [ ] data
+

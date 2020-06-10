@@ -1,13 +1,14 @@
+// Copyright (c) 2020, Ye Htet Hein.
+// All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 library flutter_woocommerce;
 
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import "dart:core";
-import 'package:flutter_woocommerce/Modals/auth.dart';
-import 'package:flutter_woocommerce/Modals/customer.dart';
-import 'package:flutter_woocommerce/Modals/error.dart';
-import 'package:flutter_woocommerce/Modals/user.dart';
+import 'package:flutter_woocommerce/flutter_woocommerce_utils.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart';
 

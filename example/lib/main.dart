@@ -1,13 +1,7 @@
 import 'package:example/config.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_woocommerce/Modals/auth.dart';
-import 'package:flutter_woocommerce/Modals/customer.dart';
-import 'package:flutter_woocommerce/Modals/error.dart';
-import 'package:flutter_woocommerce/Modals/order.dart';
-import 'package:flutter_woocommerce/Modals/productitem.dart';
-import 'package:flutter_woocommerce/Modals/user.dart';
-import 'package:flutter_woocommerce/Modals/coupon.dart';
 import 'package:flutter_woocommerce/flutter_woocommerce.dart';
+import 'package:flutter_woocommerce/flutter_woocommerce_utils.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,11 +29,12 @@ class _MyHomeState extends State<MyHome> {
 
   createCustomer() async {
     Customer newCustomer = Customer(
-        firstName: "Ma Tin",
-        lastName: "Shwe",
-        userName: "matinshwe",
-        email: "matinshwe@someone.com");
-    newCustomer.password = "12345";
+      firstName: "Ma Tin",
+      lastName: "Shwe",
+      userName: "matinshwe",
+    );
+    newCustomer.setEmail = "matinshwe@someone.com";
+    newCustomer.setPassword = "12345";
     var result =
         await flutterWoocommerce.postReq('customers', newCustomer.toMap());
     if (result is! WooError) {
@@ -54,12 +49,12 @@ class _MyHomeState extends State<MyHome> {
   fetchAllOrders() async {
     List<Order> orderList = [];
     var result = await flutterWoocommerce.getReq('orders');
-    if (result is !WooError) {
+    if (result is! WooError) {
       List<dynamic> resultList = result;
       resultList.forEach((order) {
         orderList.add(Order.fromJSON(order));
       });
-    }else{
+    } else {
       WooError err = result;
       print(err.message);
     }
@@ -90,23 +85,21 @@ class _MyHomeState extends State<MyHome> {
     }
   }
 
-  loginCutomer() async{
-    var result = await flutterWoocommerce.customerLogin(User(username: 'username', password: "12345"));
-    if(result is! WooError){
+  loginCutomer() async {
+    var result = await flutterWoocommerce
+        .customerLogin(User(username: 'username', password: "12345"));
+    if (result is! WooError) {
       WooAuthedUser wooAuthedUser = result;
       print(wooAuthedUser.displayName);
-    }else{
+    } else {
       WooError err = result;
       print(err.message);
     }
   }
-  
+
   @override
   void initState() {
     super.initState();
-    Coupon coupon = Coupon( );
-
-
   }
 
   @override
@@ -116,9 +109,7 @@ class _MyHomeState extends State<MyHome> {
       body: Container(
         child: Center(
           child: RaisedButton(
-            onPressed: () {
-              
-            },
+            onPressed: () {},
           ),
         ),
       ),

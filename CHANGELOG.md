@@ -1,3 +1,7 @@
+## [0.0.2-dev.0] - 2020-06-4
+
+* Combined all model files to one file named util.
+
 ## [0.0.1] - 2020-06-4
 
 * Documentation added.
