@@ -1,7 +1,7 @@
 name: flutter_woocommerce
 description: Woocommerce api integration with flutter supporting various features
-version: 0.0.2
-# homepage: https://yehtethein.me/projects/flutter-woocommerce/
+version: 0.0.3
+homepage: https://github.com/yhhCh405/yhhFlutterWoocommerce
 repository: https://github.com/yhhCh405/yhhFlutterWoocommerce
 issue_tracker: https://github.com/yhhCh405/yhhFlutterWoocommerce/issues
 documentation: https://github.com/yhhCh405/yhhFlutterWoocommerce
