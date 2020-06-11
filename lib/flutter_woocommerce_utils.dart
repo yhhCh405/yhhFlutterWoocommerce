@@ -264,7 +264,7 @@ class Customer {
   //setters
 
   ///The email address for the customer
-  set setEmail(mail) => this._email;
+  set setEmail(mail) => this._email = mail;
 
   ///Customer password
   set setPassword(passwd) => this._password = passwd;
@@ -489,7 +489,7 @@ class Order {
   String _taxCart;
   String _total;
   String _totalTax;
-  String _priceIncludedTax;
+  bool _priceIncludedTax;
   String _customerIPAddress;
   String _customerUserAgent;
   DateTime _paidDate;
@@ -606,7 +606,7 @@ class Order {
   String get totalTax => this._totalTax;
 
   ///True the prices included tax during checkout
-  String get priceIncludedTax => this._priceIncludedTax;
+  bool get priceIncludedTax => this._priceIncludedTax;
 
   ///Customer's IP address
   String get customerIPAddress => this._customerIPAddress;
@@ -749,7 +749,7 @@ class LineItem {
   String _totalTax;
   List<Taxes> _taxesList = [];
   String _sku;
-  String _price;
+  int _price;
 
   ///Product name
   String name;
@@ -792,7 +792,7 @@ class LineItem {
   String get sku => this._sku;
 
   ///Product price
-  String get price => this._price;
+  int get price => this._price;
 
   LineItem(
       {this.productID,

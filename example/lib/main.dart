@@ -22,12 +22,15 @@ class MyHome extends StatefulWidget {
 }
 
 class _MyHomeState extends State<MyHome> {
+  bool _showLoading = false;
+
   FlutterWoocommerce flutterWoocommerce = FlutterWoocommerce(
       url: ServerCrends.apiUrl,
       consumerKey: ServerCrends.consumerKey,
       consumerSecret: ServerCrends.consumerSecret);
 
   createCustomer() async {
+    _togggleLoading();
     Customer newCustomer = Customer(
       firstName: "Ma Tin",
       lastName: "Shwe",
@@ -37,6 +40,7 @@ class _MyHomeState extends State<MyHome> {
     newCustomer.setPassword = "12345";
     var result =
         await flutterWoocommerce.postReq('customers', newCustomer.toMap());
+    _togggleLoading();
     if (result is! WooError) {
       Customer createdCustomer = Customer.fromJSON(result);
       print(createdCustomer.userName + " is created successfully!");
@@ -47,13 +51,17 @@ class _MyHomeState extends State<MyHome> {
   }
 
   fetchAllOrders() async {
+    _togggleLoading();
     List<Order> orderList = [];
     var result = await flutterWoocommerce.getReq('orders');
+    _togggleLoading();
     if (result is! WooError) {
       List<dynamic> resultList = result;
       resultList.forEach((order) {
         orderList.add(Order.fromJSON(order));
       });
+
+      print(orderList.first.createdVia);
     } else {
       WooError err = result;
       print(err.message);
@@ -62,9 +70,11 @@ class _MyHomeState extends State<MyHome> {
   }
 
   updateProduct() async {
+    _togggleLoading();
     ProductItem productItem = ProductItem(regularPrice: "USD 500");
     var result =
         await flutterWoocommerce.putReq('products/57', productItem.toMap());
+    _togggleLoading();
     if (result is! WooError) {
       ProductItem createdCustomer = ProductItem.fromJSON(result);
       print(createdCustomer.name + " is updated successfully!");
@@ -75,7 +85,9 @@ class _MyHomeState extends State<MyHome> {
   }
 
   deleteOrder() async {
+    _togggleLoading();
     var result = await flutterWoocommerce.deleteReq('orders/27');
+    _togggleLoading();
     if (result is! WooError) {
       Order order = Order.fromJSON(result);
       print(order.id.toString() + " is updated successfully!");
@@ -86,8 +98,10 @@ class _MyHomeState extends State<MyHome> {
   }
 
   loginCutomer() async {
+    _togggleLoading();
     var result = await flutterWoocommerce
-        .customerLogin(User(username: 'username', password: "12345"));
+        .customerLogin(User(username: 'matinshwe', password: "12345"));
+    _togggleLoading();
     if (result is! WooError) {
       WooAuthedUser wooAuthedUser = result;
       print(wooAuthedUser.displayName);
@@ -95,6 +109,15 @@ class _MyHomeState extends State<MyHome> {
       WooError err = result;
       print(err.message);
     }
+  }
+
+  _togggleLoading() {
+    if (_showLoading) {
+      _showLoading = false;
+    } else {
+      _showLoading = true;
+    }
+    setState(() {});
   }
 
   @override
@@ -105,12 +128,49 @@ class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Demo Flutter Woocommerce'),
+        centerTitle: true,
+      ),
       body: Container(
-        child: Center(
-          child: RaisedButton(
-            onPressed: () {},
-          ),
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //There are various way to integrate. This is just example
+            Text(
+              'See result in console',
+              style: TextStyle(color: Colors.black26),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            FlatButton(
+              padding: EdgeInsets.all(15),
+              splashColor: Colors.blue,
+              textColor: Colors.blue,
+              shape:
+                  BeveledRectangleBorder(side: BorderSide(color: Colors.blue)),
+              child: _showLoading
+                  ? SizedBox(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1,
+                      ),
+                      width: 20,
+                      height: 20,
+                    )
+                  : Text(
+                      'Run',
+                      style: TextStyle(fontSize: 18),
+                    ),
+              onPressed: _showLoading
+                  ? null
+                  : () {
+                      fetchAllOrders();
+                    },
+            ),
+          ],
         ),
       ),
     );
