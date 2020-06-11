@@ -1,8 +1,12 @@
-## [0.0.2] - 2020-06-4
+## [0.0.3] - 2020-06-11
+
+* fixed security issue
+
+## [0.0.2] - 2020-06-10
 
 * stable version
 
-## [0.0.2-dev.0] - 2020-06-4
+## [0.0.2-dev.0] - 2020-06-10
 
 * Combined all model files to one file named util.
 
